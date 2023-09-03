@@ -1,0 +1,48 @@
+<!-- Header -->
+<app-header></app-header>
+<mat-table [dataSource]="books">
+    <!-- Image Column -->
+    <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef>Image 📷</mat-header-cell>
+        <mat-cell *matCellDef="let book">
+            <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="{{ book.volumeInfo.title }}" width="50" height="75">
+        </mat-cell>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef>Title 🎤</mat-header-cell>
+        <mat-cell *matCellDef="let book">
+            <h3>{{ book.volumeInfo.title }}</h3>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef>Author 😸</mat-header-cell>
+        <mat-cell *matCellDef="let book">
+            <p>{{ book.volumeInfo.authors?.join(', ') }}</p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Rating Column -->
+    <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef>Rating ⭐</mat-header-cell>
+        <mat-cell *matCellDef="let book">
+            <p>{{ book.volumeInfo.averageRating ? book.volumeInfo.averageRating + ' ⭐' : "No ⭐'s Found"}}</p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Conutry Column -->
+    <ng-container matColumnDef="language">
+        <mat-header-cell *matHeaderCellDef>Language 🎌</mat-header-cell>
+        <mat-cell *matCellDef="let book">
+            <p>{{ book.volumeInfo.language}}</p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Define the table rows -->
+    <mat-header-row *matHeaderRowDef="['image', 'title', 'author', 'rating', 'language']"></mat-header-row>
+    <mat-row class="row" *matRowDef="let row; columns: ['image', 'title', 'author', 'rating', 'language']"
+        (click)="navigateToDetailsPage(row.id)"></mat-row>
+</mat-table>

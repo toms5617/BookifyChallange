@@ -1,0 +1,6 @@
+.row {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(85%);
+    }
+}

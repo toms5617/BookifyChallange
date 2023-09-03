@@ -1,0 +1,34 @@
+<!-- Header -->
+<app-header></app-header>
+<div class="landing-page">
+    <!-- Search Bar -->
+    <mat-form-field class="search-bar">
+        <input matInput [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search for a book...">
+        <button mat-button *ngIf="searchTerm" (click)="clearSearch()">Clear</button>
+    </mat-form-field>
+
+    <!-- Latest Books Section -->
+    <div class="latest-books">
+        <h2>{{searchTerm === "" ? 'Latest books' : 'Search results'}}</h2>
+        <div class="book-cards-container">
+            <mat-card *ngFor="let book of latestBooks" class="book-card">
+                <mat-card-header class="card-header">
+                    <div mat-card-avatar class="book-image">
+                        <img *ngIf="book.volumeInfo.imageLinks?.thumbnail" [src]="book.volumeInfo.imageLinks?.thumbnail"
+                            alt="{{ book.volumeInfo.title }}">
+                    </div>
+                    <mat-card-title>{{ book.volumeInfo.title }}</mat-card-title>
+                    <mat-card-subtitle>🧝 Author:
+                        {{ book?.volumeInfo?.authors && book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(', ') : book.volumeInfo.authors }}
+                        <p style="color: black;">Rating:
+                            {{ book?.volumeInfo?.averageRating ? book.volumeInfo.averageRating + ' ⭐' : "No ⭐'s Found"}}
+                        </p>
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions>
+                    <a mat-raised-button color="primary" (click)="navigateToBookDetails(book.id)">Details</a>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<!-- Header -->
+<app-header></app-header>
+<div class="book-details">
+    <mat-card class="example-card">
+        <div class="flex-container">
+            <div class="image-container">
+                <mat-card-header>
+                    <img [src]="bookDetails?.volumeInfo?.imageLinks?.thumbnail"
+                        alt="{{ bookDetails?.volumeInfo?.title }}">
+                </mat-card-header>
+            </div>
+            <div class="text-container">
+                <mat-card-title class="card-title">{{ bookDetails?.volumeInfo?.title }}</mat-card-title>
+                <mat-card-subtitle>Authors: {{ bookDetails?.volumeInfo?.authors?.join(', ') }}</mat-card-subtitle>
+                <mat-card-content>
+                    <p><b>Description:</b> {{ bookDetails?.volumeInfo?.description }}</p>
+                    <p><b>Language:</b> {{ bookDetails?.volumeInfo?.language }}</p>
+                    <p><b>Page Count:</b> {{ bookDetails?.volumeInfo?.pageCount }}</p>
+                    <p><b>Published Date:</b> {{ bookDetails?.volumeInfo?.publishedDate }}</p>
+                    <p><b>Publisher:</b> {{ bookDetails?.volumeInfo?.publisher }}</p>
+                    <p><b>Maturity Rating:</b> {{ bookDetails?.volumeInfo?.maturityRating }}</p>
+                    <p><b>Preview Link: </b> <a href="{{ bookDetails?.volumeInfo?.previewLink }}"
+                            target="_blank">{{ bookDetails?.volumeInfo?.previewLink }}</a></p>
+                </mat-card-content>
+            </div>
+        </div>
+    </mat-card>
+</div>
